@@ -11,7 +11,8 @@ module.exports = (sequelize, DataTypes) => {
     password: DataTypes.STRING,
     image: DataTypes.STRING,
   },{
-    tableName: 'User',
+    tableName: 'Users',
+    timestamps: false,
   });
 
   User.associate = (models) => {
