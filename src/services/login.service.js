@@ -8,6 +8,7 @@ const loginService = {
         email,
         password,
       },
+      raw: true,
     });
 
     if (!result) return null;
