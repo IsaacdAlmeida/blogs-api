@@ -10,6 +10,14 @@ const userService = {
     return result;
   },
 
+  findByPk: async (id) => {
+    const user = await User.findByPk(id, {
+      attributes: { exclude: ['password'] },
+    });
+
+    return user;
+  },
+
   create: async ({ displayName, email, password, image }) => {
     const validateEmail = await User.findOne({
       where: { 

@@ -6,6 +6,7 @@ const tokenValidator = require('../middlewares/auth.middleware');
 const userRoute = Router();
 
 userRoute.get('/', tokenValidator.validation, userController.getAll);
+userRoute.get('/:id', tokenValidator.validation, userController.findByPk);
 userRoute.post('/', userValidator.validateCreateUser, userController.create);
 
 module.exports = userRoute;

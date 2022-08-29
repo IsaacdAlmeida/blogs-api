@@ -6,6 +6,16 @@ const userController = {
 
     res.status(200).json(users);
   },
+
+  findByPk: async (req, res) => {
+    const { id } = req.params;
+
+    const user = await userService.findByPk(id);
+
+    if (!user) return res.status(404).json({ message: 'User does not exist' });
+
+    return res.status(200).json(user);
+  },
   
   create: async (req, res) => {
       const { displayName, email, password, image } = req.body;
