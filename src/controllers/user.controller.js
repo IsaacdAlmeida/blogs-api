@@ -1,6 +1,12 @@
 const userService = require('../services/user.service');
 
 const userController = {
+  getAll: async (_req, res) => {
+    const users = await userService.getAll();
+
+    res.status(200).json(users);
+  },
+  
   create: async (req, res) => {
       const { displayName, email, password, image } = req.body;
 
