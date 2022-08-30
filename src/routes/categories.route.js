@@ -5,6 +5,7 @@ const tokenValidator = require('../middlewares/auth.middleware');
 
 const categoriesRoute = Router();
 
+categoriesRoute.get('/', tokenValidator.validation, categoriesController.getAll);
 categoriesRoute.post('/',
   tokenValidator.validation,
   categoriesValidator.validateCreate, 
