@@ -16,7 +16,9 @@ module.exports = (sequelize, DataTypes) => {
     updated: DataTypes.DATE,
   },{
     tableName: 'BlogPosts',
-    timestamps: false,
+    timestamps: true,
+    createdAt: 'published',
+    updatedAt: 'updated' // dessa forma passa o requisito 12
   });
 
   BlogPost.associate = (models) => {
