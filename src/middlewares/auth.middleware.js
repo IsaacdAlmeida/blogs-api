@@ -7,9 +7,8 @@ const tokenValidator = {
     try {
       if (!authorization) return res.status(401).json({ message: 'Token not found' });
       
-      tokenHelper.verifyToken(authorization);
-      // const dataToken = 
-      // req.userId = dataToken.id;
+      const dataToken = tokenHelper.verifyToken(authorization);
+      req.userId = dataToken.id;
 
       next();
     } catch (error) {
