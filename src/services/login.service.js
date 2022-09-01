@@ -14,6 +14,7 @@ const loginService = {
     if (!result) return null;
 
     const token = tokenHelper.createToken({
+      id: result.id,
       email: result.email,
     });
 
