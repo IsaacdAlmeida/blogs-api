@@ -56,5 +56,3 @@ const userService = {
 };
 
 module.exports = userService;
-
-// teste
