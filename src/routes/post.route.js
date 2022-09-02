@@ -6,6 +6,7 @@ const tokenValidator = require('../middlewares/auth.middleware');
 const postRoute = Router();
 
 postRoute.get('/', tokenValidator.validation, postController.getAll);
+postRoute.get('/search', tokenValidator.validation, postController.search);
 postRoute.get('/:id', tokenValidator.validation, postController.findByPk);
 postRoute.post('/', 
   tokenValidator.validation,
