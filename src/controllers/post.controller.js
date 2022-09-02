@@ -48,8 +48,6 @@ const postController = {
 
     const result = await postService.remove({ userId, id });
 
-    console.log('result do controller', result);
-
     if (!result) return res.status(401).json({ message: 'Unauthorized user' });
 
     return res.status(204).end();
