@@ -16,6 +16,21 @@ const postService = {
     return result;
   },
 
+  findByPk: async (id) => {
+    const post = await BlogPost.findByPk(id, {
+      include: [{
+        model: User, 
+        as: 'user',
+        attributes: { exclude: ['password'] },
+      }, {
+        model: Category, 
+        as: 'categories',
+      }],
+    });
+
+    return post;
+  },
+
   create: async ({ title, content, categoryIds, userId }) => {
     const result = await Category.findAndCountAll({
       where: { id: categoryIds },
