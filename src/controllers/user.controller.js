@@ -28,6 +28,16 @@ const userController = {
   
     res.status(201).json({ token });
   },
+
+  remove: async (req, res) => {
+    const { userId } = req;
+
+    const result = await userService.remove({ userId });
+
+    if (!result) return res.status(401).json({ message: 'Unauthorized user' });
+
+    return res.status(204).end();
+  },
 };
 
 module.exports = userController;

@@ -41,6 +41,18 @@ const userService = {
 
     return token;
   },
+
+  remove: async ({ userId }) => {
+    const id = userId;
+    
+    const user = await User.findByPk(id);
+
+    if (!user) return null;
+
+    await User.destroy({ where: { id } });
+
+    return true;
+  },
 };
 
 module.exports = userService;
