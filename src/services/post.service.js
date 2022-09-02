@@ -48,8 +48,6 @@ const postService = {
         postId: postCreated.dataValues.id, categoryId: item,
       }));
 
-      // console.log(CategoriesIdsMapped);
-
       await PostCategory.bulkCreate(CategoriesIdsMapped, { transaction });
 
       return postCreated;
@@ -80,6 +78,16 @@ const postService = {
     });
 
     return updatedPost;
+  },
+
+  remove: async ({ userId, id }) => {
+    const post = await BlogPost.findByPk(id);
+
+    if (post.userId !== userId) return null;
+
+    await BlogPost.destroy({ where: { id } });
+
+    return true;
   },
 };
 

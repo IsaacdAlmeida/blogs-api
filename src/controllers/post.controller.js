@@ -41,6 +41,19 @@ const postController = {
 
     return res.status(200).json(result);
   },
+
+  remove: async (req, res) => {
+    const { userId } = req;
+    const { id } = req.params;
+
+    const result = await postService.remove({ userId, id });
+
+    console.log('result do controller', result);
+
+    if (!result) return res.status(401).json({ message: 'Unauthorized user' });
+
+    return res.status(204).end();
+  },
 };
 
 module.exports = postController;

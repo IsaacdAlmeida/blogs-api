@@ -1,4 +1,5 @@
 const Joi = require('joi');
+const { BlogPost } = require('../database/models');
 
 const MESSAGE_REQUIRED = 'Some required fields are missing';
 
@@ -48,6 +49,16 @@ const validatePost = {
     const { error } = updateSchema.validate(post);
 
     if (error) return res.status(400).json({ message: error.message });
+
+    next();
+  },
+
+  validateRemove: async (req, res, next) => {
+    const { id } = req.params;
+
+    const post = await BlogPost.findByPk(id);
+
+    if (!post) return res.status(404).json({ message: 'Post does not exist' });
 
     next();
   },
