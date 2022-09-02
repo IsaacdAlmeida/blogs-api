@@ -9,7 +9,11 @@ postRoute.get('/', tokenValidator.validation, postController.getAll);
 postRoute.get('/:id', tokenValidator.validation, postController.findByPk);
 postRoute.post('/', 
   tokenValidator.validation,
-  postValidator.validateContent, 
+  postValidator.validateContent,
   postController.create);
+postRoute.put('/:id', 
+  tokenValidator.validation,
+  postValidator.validateUpdate,
+  postController.update);
 
 module.exports = postRoute;
