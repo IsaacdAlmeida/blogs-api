@@ -1,6 +1,12 @@
 const postService = require('../services/post.service');
 
 const postController = {
+  getAll: async (_req, res) => {
+    const users = await postService.getAll();
+
+    res.status(200).json(users);
+  },
+
   create: async (req, res) => {
     const { title, content, categoryIds } = req.body;
     const { userId } = req;

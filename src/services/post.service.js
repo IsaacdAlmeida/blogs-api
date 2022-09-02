@@ -1,6 +1,21 @@
-const { Category, BlogPost, PostCategory, sequelize } = require('../database/models');
+const { User, Category, BlogPost, PostCategory, sequelize } = require('../database/models');
 
 const postService = {
+  getAll: async () => {
+    const result = await BlogPost.findAll({
+      include: [{
+        model: User, 
+        as: 'user',
+        attributes: { exclude: ['password'] },
+      }, {
+        model: Category, 
+        as: 'categories',
+      }],
+    });
+
+    return result;
+  },
+
   create: async ({ title, content, categoryIds, userId }) => {
     const result = await Category.findAndCountAll({
       where: { id: categoryIds },
